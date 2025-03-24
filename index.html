@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Peta Gedung UGM</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 80vh;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Peta Gedung di Universitas Gadjah Mada (UGM)</h2>
+    <div id="map"></div>
+    Nicholas Genta Setiawan Gunawan 22/504443/TK/55176
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      const map = L.map("map").setView([-7.7706, 110.3774], 16);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+
+      const gedungUGM = [
+        {
+          nama: "Grha Sabha Pramana (GSP)",
+          koordinat: [-7.770496, 110.377899],
+        },
+        {
+          nama: "Rektorat UGM",
+          koordinat: [-7.767893, 110.378539],
+        },
+        {
+          nama: "Perpustakaan Pusat UGM",
+          koordinat: [-7.769031, 110.377891],
+        },
+        {
+          nama: "Fakultas Teknik UGM",
+          koordinat: [-7.765597, 110.373086],
+        },
+        {
+          nama: "Fakultas Kedokteran UGM",
+          koordinat: [-7.76872, 110.384905],
+        },
+        {
+          nama: "Fakultas Geografi UGM",
+          koordinat: [-7.766486, 110.377753],
+        },
+      ];
+
+      gedungUGM.forEach((gedung) => {
+        L.marker(gedung.koordinat)
+          .addTo(map)
+          .bindPopup(`<b>${gedung.nama}</b>`);
+      });
+    </script>
+  </body>
+</html>
