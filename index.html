@@ -19,10 +19,22 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
       const map = L.map("map").setView([-7.7706, 110.3774], 16);
+      var geojson = {};
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap contributors",
       }).addTo(map);
+      layer_geojson = L.geoJSON().addTo(map);
+      fetch(
+        "https://api.ekuatormaps.id/fetch_layer/_herba_dan_rumput_0b8b2a037f502099"
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          layer_geojson.addData(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
 
       const gedungUGM = [
         {
